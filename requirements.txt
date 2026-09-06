@@ -1,0 +1,7 @@
+Flask
+pypdf
+python-docx
+openpyxl
+python-pptx
+Werkzeug
+gunicorn

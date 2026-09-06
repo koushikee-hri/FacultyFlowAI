@@ -1,0 +1,6 @@
+venv/
+__pycache__/
+*.pyc
+facultyflow.db
+uploads/*
+.env 
