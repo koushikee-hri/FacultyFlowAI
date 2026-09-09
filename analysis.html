@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>FacultyFlow AI - Analysis</title>
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    margin: 0;
+}
+
+.navbar {
+    background: #1e3a8a;
+    color: white;
+    padding: 18px 40px;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.nav-links {
+    float: right;
+    font-size: 14px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.container {
+    max-width: 950px;
+    margin: 40px auto;
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+h1 {
+    color: #1e3a8a;
+}
+
+h2 {
+    color: #1e3a8a;
+    margin-top: 30px;
+}
+
+.info-box {
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.success-box {
+    background: #ecfdf5;
+    border-left: 6px solid #10b981;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+
+.success-box h2 {
+    color: #047857;
+    margin-top: 0;
+}
+
+.field {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+}
+
+.field-name {
+    font-weight: bold;
+    color: #1e3a8a;
+}
+
+.field-value {
+    margin-top: 5px;
+    color: #334155;
+}
+
+pre {
+    background: #0f172a;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+}
+
+.keyword {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1e40af;
+    padding: 7px 12px;
+    margin: 5px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.warning {
+    background: #fff7ed;
+    border-left: 5px solid #f97316;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 8px;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 20px;
+    margin-top: 15px;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.button:hover {
+    background: #1d4ed8;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+🏫 FacultyFlow AI
+
+<div class="nav-links">
+
+<a href="/dashboard">Dashboard</a>
+<a href="/documents">Documents</a>
+<a href="/tasks">Tasks</a>
+<a href="/records">Records</a>
+<a href="/ai-assistant">AI Assistant</a>
+<a href="/faculty-management">👩‍🏫 Faculty Management</a>
+
+</div>
+
+</div>
+
+
+<div class="container">
+
+<h1>🤖 AI Document Analysis</h1>
+
+<div class="info-box">
+
+<strong>📄 File Name:</strong>
+{{ analysis.filename }}
+
+<br><br>
+
+<strong>📂 Document Type:</strong>
+{{ analysis.document_type }}
+
+<br><br>
+
+<strong>🏷️ Category:</strong>
+{{ analysis.category }}
+
+</div>
+
+
+<h2>📝 Summary</h2>
+
+<div class="info-box">
+
+{{ analysis.summary }}
+
+</div>
+
+
+<h2>🔑 Keywords</h2>
+
+<div class="info-box">
+
+{% if analysis.keywords %}
+
+{% for keyword in analysis.keywords %}
+
+<span class="keyword">
+{{ keyword }}
+</span>
+
+{% endfor %}
+
+{% else %}
+
+No keywords detected.
+
+{% endif %}
+
+</div>
+
+
+<h2>📌 Detected Information</h2>
+
+<div class="info-box">
+
+{% if analysis.extracted_fields %}
+
+{% for key, value in analysis.extracted_fields.items() %}
+
+<div class="field">
+
+<div class="field-name">
+{{ key }}
+</div>
+
+<div class="field-value">
+{{ value }}
+</div>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<p>
+No labelled information was detected in this document.
+</p>
+
+{% endif %}
+
+</div>
+
+
+<h2>📖 Extracted Text</h2>
+
+<pre>{{ analysis.extracted_text }}</pre>
+
+
+{% if analysis.warnings %}
+
+<h2>⚠️ Warnings</h2>
+
+{% for warning in analysis.warnings %}
+
+<div class="warning">
+{{ warning }}
+</div>
+
+{% endfor %}
+
+{% endif %}
+
+
+<!-- DOCUMENT SAVED MESSAGE -->
+
+<div class="success-box">
+
+<h2>✅ Document Saved Successfully</h2>
+
+<p>
+Your document has been analyzed and automatically added to
+<strong>Faculty Records</strong>.
+</p>
+
+<p>
+You do not need to save it manually.
+</p>
+
+<a href="/records" class="button">
+📚 View Faculty Records
+</a>
+
+<a href="/documents" class="button">
+📄 Analyze Another Document
+</a>
+
+</div>
+
+
+</div>
+
+</body>
+
+</html>

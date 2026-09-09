@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>FacultyFlow AI - Assistant</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            margin: 0;
+        }
+
+        .navbar {
+            background: #1e3a8a;
+            color: white;
+            padding: 18px 40px;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            float: right;
+            font-size: 14px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 40px auto;
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            color: #1e3a8a;
+        }
+
+        .subtitle {
+            color: #64748b;
+        }
+
+        .chat-box {
+            margin-top: 30px;
+        }
+
+        .ai-message {
+            background: #eff6ff;
+            border-left: 5px solid #2563eb;
+            padding: 20px;
+            border-radius: 10px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .user-message {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        button {
+            padding: 14px 24px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .suggestions {
+            margin-top: 30px;
+        }
+
+        .suggestion {
+            display: inline-block;
+            background: #f1f5f9;
+            padding: 10px 14px;
+            margin: 5px;
+            border-radius: 20px;
+            color: #1e3a8a;
+            font-size: 14px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVIGATION BAR -->
+
+    <div class="navbar">
+
+        🏫 FacultyFlow AI
+
+        <div class="nav-links">
+
+            <a href="/dashboard">Dashboard</a>
+
+            <a href="/documents">Documents</a>
+
+            <a href="/tasks">Tasks</a>
+
+            <a href="/records">Records</a>
+
+            <a href="/ai-assistant">AI Assistant</a>
+
+            <a href="/faculty-management">👩‍🏫 Faculty Management</a>
+
+        </div>
+
+    </div>
+
+
+    <!-- MAIN CONTAINER -->
+
+    <div class="container">
+
+        <h1>🤖 AI Assistant</h1>
+
+        <p class="subtitle">
+            Your intelligent assistant for faculty
+            administrative work.
+        </p>
+
+
+        <!-- AI RESPONSE -->
+
+        <div class="chat-box">
+
+            {% if question %}
+
+            <div class="user-message">
+
+                👤 <strong>You:</strong>
+
+                <br><br>
+
+                {{ question }}
+
+            </div>
+
+            {% endif %}
+
+
+            <div class="ai-message">
+
+                🤖 <strong>FacultyFlow AI:</strong>
+
+                <br><br>
+
+                {{ response | safe }}
+
+            </div>
+
+        </div>
+
+
+        <!-- QUESTION FORM -->
+
+        <form action="/ask_ai" method="POST">
+
+            <div class="input-area">
+
+                <input
+                    type="text"
+                    name="question"
+                    placeholder="Ask FacultyFlow AI something..."
+                    required
+                >
+
+                <button type="submit">
+                    Ask AI
+                </button>
+
+            </div>
+
+        </form>
+
+
+        <!-- SUGGESTIONS -->
+
+        <div class="suggestions">
+
+            <h3>💡 Try asking:</h3>
+
+            <div class="suggestion">
+                Which task should I complete first?
+            </div>
+
+            <div class="suggestion">
+                Show my pending tasks
+            </div>
+
+            <div class="suggestion">
+                Analyze my workload
+            </div>
+
+            <div class="suggestion">
+                How many records do I have?
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>
